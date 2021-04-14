@@ -1,19 +1,23 @@
+package units;
+
 import java.util.Random;
 
-public final class Goblin extends GameUnit implements Attackers, Defenders {
+public final class Hero extends FightUnit {
 
-    public Goblin(String name, int gold, int experience) {
-        super(name, 100, 8, 2, gold, experience);
+    public Hero(String name, int force, int agility) {
+        super(name, 100, force, agility, 0, 0);
     }
 
     @Override
     public int attack() {
+
         int attackHit = 0;
         int powerHit = force + agility;
         int multiplier = new Random().nextInt(100);
 
-        if (multiplier > 80) attackHit = powerHit + multiplier / 2;
-        else if (multiplier >= 20) attackHit = Math.max(force, agility) * 2;
+        if (multiplier > 90) attackHit = powerHit + multiplier;
+        else if (multiplier >= 50) attackHit = powerHit + multiplier / 2;
+        else if (multiplier >= 20) attackHit = Math.max(force, agility);
 
         return attackHit;
     }
@@ -24,4 +28,5 @@ public final class Goblin extends GameUnit implements Attackers, Defenders {
         int multiplier = new Random().nextInt(defenceHit);
         return defenceHit + multiplier;
     }
+
 }

@@ -1,9 +1,11 @@
+package units;
+
 import java.util.Random;
 
-public final class Hero extends GameUnit implements Attackers, Defenders {
+public final class Skeleton extends FightUnit {
 
-    public Hero(String name, int force, int agility) {
-        super(name, 100, force, agility, 0, 0);
+    public Skeleton(String name, int gold, int experience) {
+        super(name, 100, 5, 8, gold, experience);
     }
 
     @Override
@@ -13,9 +15,8 @@ public final class Hero extends GameUnit implements Attackers, Defenders {
         int powerHit = force + agility;
         int multiplier = new Random().nextInt(100);
 
-        if (multiplier > 90) attackHit = powerHit + multiplier;
-        else if (multiplier >= 50) attackHit = powerHit + multiplier / 2;
-        else if (multiplier >= 20) attackHit = Math.max(force, agility);
+        if (multiplier > 50) attackHit = powerHit + multiplier / 2;
+        else if (multiplier >= 20) attackHit = Math.max(force, agility);;
 
         return attackHit;
     }
@@ -26,5 +27,4 @@ public final class Hero extends GameUnit implements Attackers, Defenders {
         int multiplier = new Random().nextInt(defenceHit);
         return defenceHit + multiplier;
     }
-
 }

@@ -1,3 +1,5 @@
+package units;
+
 public abstract class GameUnit {
 
     protected String name; //имя
@@ -18,14 +20,16 @@ public abstract class GameUnit {
 
     @Override
     public String toString() {
-        return "{" +
-                "name='" + name + '\'' +
-                ", health=" + health +
-                '}';
+        return name + " (" + health + ") ";
     }
 
-    protected int getHealth() {
+    public int getHealth() {
         return health;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
 
 }
