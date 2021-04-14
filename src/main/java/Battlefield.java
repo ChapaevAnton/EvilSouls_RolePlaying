@@ -31,15 +31,22 @@ public class Battlefield {
 
     private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit) {
 
-        int damageHit = attackUnit.attack() - defenceUnit.defence();
-        int currentHealthDefenceUnit = defenceUnit.getHealth() - damageHit;
-        defenceUnit.setHealth(currentHealthDefenceUnit);
+       if (defenceUnit.getHealth() > 0) {
+
+            int damageHit = attackUnit.attack() - defenceUnit.defence();
+
+            if (damageHit < 0) {
+                System.out.println("\u2694" + attackUnit + "нанес удар в " + damageHit + ", и не пробил броню " + defenceUnit);
+                defenceUnit.setHealth(defenceUnit.getHealth());
+            } else if (damageHit == 0) {
+                System.out.println("\u2699" + attackUnit + "нанося удар и промахнулся по " + defenceUnit);
+                defenceUnit.setHealth(defenceUnit.getHealth());
+            } else {
+                System.out.println("\u2694" + attackUnit + "нанес удар в " + damageHit + " очков урона, по " + defenceUnit);
+                defenceUnit.setHealth(defenceUnit.getHealth() - damageHit);
+            }
 
 
-        if (defenceUnit.getHealth() > 0) {
-            System.out.println("\u2694" + attackUnit + "нанес удар в " + damageHit + " очков урона, по " + defenceUnit);
-        } else {
-            System.out.println("\u2699" + attackUnit + "нанося удар и промахнулся по " + defenceUnit);
         }
 
         if (defenceUnit.getHealth() <= 0) {
