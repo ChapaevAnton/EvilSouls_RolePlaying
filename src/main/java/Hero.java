@@ -22,7 +22,9 @@ public final class Hero extends GameUnit implements Attackers, Defenders {
 
     @Override
     public int defence() {
-        return 0;
+        int defenceHit = Math.max(force, agility);
+        int multiplier = new Random().nextInt(defenceHit);
+        return defenceHit + multiplier;
     }
 
 }
