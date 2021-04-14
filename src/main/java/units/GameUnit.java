@@ -20,7 +20,7 @@ public abstract class GameUnit {
 
     @Override
     public String toString() {
-        return name + " (" + health + ") ";
+        return name + "(" + health + ")";
     }
 
     public int getHealth() {

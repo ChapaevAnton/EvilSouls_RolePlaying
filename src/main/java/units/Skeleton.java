@@ -16,7 +16,7 @@ public final class Skeleton extends FightUnit {
         int multiplier = new Random().nextInt(100);
 
         if (multiplier > 50) attackHit = powerHit + multiplier / 2;
-        else if (multiplier >= 20) attackHit = Math.max(force, agility);;
+        else if (multiplier >= 40) attackHit = Math.max(force, agility);;
 
         return attackHit;
     }
