@@ -15,4 +15,12 @@ public abstract class UnitGame {
         this.gold = gold;
         this.experience = experience;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", health=" + health +
+                '}';
+    }
 }

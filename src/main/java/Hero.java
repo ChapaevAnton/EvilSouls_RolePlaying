@@ -24,4 +24,5 @@ public final class Hero extends UnitGame implements Attackers, Defenders {
     public int defence() {
         return 0;
     }
+
 }
