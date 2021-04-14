@@ -1,4 +1,4 @@
-public abstract class UnitGame {
+public abstract class GameUnit {
 
     protected String name; //имя
     protected int health; //здоровье
@@ -7,7 +7,7 @@ public abstract class UnitGame {
     protected int gold; //золото
     protected int experience; //опыт
 
-    public UnitGame(String name, int health, int force, int agility, int gold, int experience) {
+    protected GameUnit(String name, int health, int force, int agility, int gold, int experience) {
         this.name = name;
         this.health = health;
         this.force = force;
@@ -23,4 +23,9 @@ public abstract class UnitGame {
                 ", health=" + health +
                 '}';
     }
+
+    protected int getHealth() {
+        return health;
+    }
+
 }

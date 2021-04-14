@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public final class Goblin extends UnitGame implements Attackers, Defenders {
+public final class Goblin extends GameUnit implements Attackers, Defenders {
 
     public Goblin(String name, int gold, int experience) {
         super(name, 100, 8, 2, gold, experience);

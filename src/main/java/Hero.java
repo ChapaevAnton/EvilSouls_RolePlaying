@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public final class Hero extends UnitGame implements Attackers, Defenders {
+public final class Hero extends GameUnit implements Attackers, Defenders {
 
     public Hero(String name, int force, int agility) {
         super(name, 100, force, agility, 0, 0);

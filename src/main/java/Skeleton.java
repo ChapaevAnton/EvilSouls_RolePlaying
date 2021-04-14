@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public final class Skeleton extends UnitGame implements Attackers, Defenders {
+public final class Skeleton extends GameUnit implements Attackers, Defenders {
 
     public Skeleton(String name, int gold, int experience) {
         super(name, 100, 5, 8, gold, experience);
