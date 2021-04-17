@@ -9,9 +9,10 @@ public class Battlefield {
 
         Thread runBattle = new Thread(() -> {
             int moveCounter = 1;
-            boolean isRunOfBattle;
+            boolean isRunOfBattle = true;
             System.out.println("\u25B6 FIGHT!!!");
-            do {
+
+            while (isRunOfBattle) {
                 if (moveCounter % 2 == 0) {
                     isRunOfBattle = fightOfBattle(unitFirst, unitSecondary, battleCallback);
                 } else {
@@ -26,7 +27,7 @@ public class Battlefield {
                     e.printStackTrace();
                 }
 
-            } while (isRunOfBattle);
+            }
 
         });
 

@@ -29,17 +29,17 @@ public class WorldGame {
         System.out.println(player.getFullInfoUnit());
         System.out.println(skeleton.getFullInfoUnit());
 
-//        new Battlefield().battle(player, skeleton, new BattleCallback() {
-//            @Override
-//            public void battleWin() {
-//
-//            }
-//
-//            @Override
-//            public void battleLos() {
-//                System.out.println("GAME OVER");
-//            }
-//        });
+        new Battlefield().battle(player, skeleton, new BattleCallback() {
+            @Override
+            public void battleWin() {
+
+            }
+
+            @Override
+            public void battleLos() {
+                System.out.println("GAME OVER");
+            }
+        });
 
 
     }
