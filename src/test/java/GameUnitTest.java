@@ -1,13 +1,16 @@
 import org.junit.jupiter.api.Test;
-import units.*;
+import units.FightingUnit;
+import units.Goblin;
+import units.Hero;
+import units.Skeleton;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameUnitTest {
 
     Hero hero = new Hero("hero", 10, 10);
-    Skeleton skeleton = new Skeleton("skeleton", 10, 100);
-    Goblin goblin = new Goblin("goblin", 10, 100);
+    Skeleton skeleton = new Skeleton(10, 10, 100, 100);
+    Goblin goblin = new Goblin(10, 10, 100, 100);
 
     FightingUnit[] fightingUnits = {hero, skeleton, goblin};
 

@@ -2,20 +2,28 @@ package units;
 
 public abstract class GameUnit {
 
+    static public final int FORCE_BASIC = 5;
+    static public final int AGILITY_BASIC = 5;
+    static public final int GOLD_BASIC = 100;
+    static public final int EXPERIENCE_BASIC = 100;
+
+
     protected String name; //имя
     protected int health; //здоровье
     protected int force; //сила
     protected int agility; //ловкость
     protected int gold; //золото
     protected int experience; //опыт
+    protected int level; //уровень
 
-    protected GameUnit(String name, int health, int force, int agility, int gold, int experience) {
+    protected GameUnit(String name, int health, int force, int agility, int gold, int experience, int level) {
         this.name = name;
         this.health = health;
         this.force = force;
         this.agility = agility;
         this.gold = gold;
         this.experience = experience;
+        this.level = level;
     }
 
     @Override
@@ -47,5 +55,18 @@ public abstract class GameUnit {
         this.experience = experience;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public String getFullInfoUnit() {
+        return String.format(
+                "Уровень: %d Опыт: %d\n" +
+                        "Имя: %s\n" +
+                        "Здоровье: %d\n" +
+                        "Сила: %d\n" +
+                        "Ловкость: %d\n" +
+                        "Золото: %d\n", level, experience, name, health, force, agility, gold);
+    }
 
 }

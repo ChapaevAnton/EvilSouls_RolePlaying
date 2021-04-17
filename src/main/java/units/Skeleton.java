@@ -4,8 +4,9 @@ import java.util.Random;
 
 public final class Skeleton extends FightUnit {
 
-    public Skeleton(String name, int gold, int experience) {
-        super(name, 100, 5, 8, gold, experience);
+    public Skeleton(int force, int agility, int gold, int experience) {
+
+        super("skeleton", 100, force, agility, gold, experience,1);
     }
 
     @Override
@@ -16,7 +17,8 @@ public final class Skeleton extends FightUnit {
         int multiplier = new Random().nextInt(100);
 
         if (multiplier > 50) attackHit = powerHit + multiplier / 2;
-        else if (multiplier >= 40) attackHit = Math.max(force, agility);;
+        else if (multiplier >= 40) attackHit = Math.max(force, agility);
+        ;
 
         return attackHit;
     }

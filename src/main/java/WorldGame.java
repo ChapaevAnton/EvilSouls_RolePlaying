@@ -1,14 +1,16 @@
 import battle.BattleCallback;
 import battle.Battlefield;
 import units.FightUnit;
+import units.GenerateUnits;
 import units.Hero;
-import units.Skeleton;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class WorldGame {
+
+    public static FightUnit player;
 
     public static void main(String[] args) throws IOException {
 
@@ -20,21 +22,24 @@ public class WorldGame {
             System.out.println("\u001B[31m" + line);
         }
 
-        FightUnit player = new Hero("player", 5, 5);
-        FightUnit skeleton = new Skeleton("skeleton", 5, 100);
+        player = new Hero("player", 5, 5);
 
+        FightUnit skeleton = GenerateUnits.getFightUnit(player.getLevel());
 
-        new Battlefield().battle(player, skeleton, new BattleCallback() {
-            @Override
-            public void battleWin() {
+        System.out.println(player.getFullInfoUnit());
+        System.out.println(skeleton.getFullInfoUnit());
 
-            }
-
-            @Override
-            public void battleLos() {
-                System.out.println("GAME OVER");
-            }
-        });
+//        new Battlefield().battle(player, skeleton, new BattleCallback() {
+//            @Override
+//            public void battleWin() {
+//
+//            }
+//
+//            @Override
+//            public void battleLos() {
+//                System.out.println("GAME OVER");
+//            }
+//        });
 
 
     }
