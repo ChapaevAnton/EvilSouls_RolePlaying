@@ -1,8 +1,11 @@
+package battle;
+
 import units.FightUnit;
+import units.Hero;
 
 public class Battlefield {
 
-    public void battle(FightUnit unitFirst, FightUnit unitSecondary) {
+    public void battle(FightUnit unitFirst, FightUnit unitSecondary, BattleCallback battleCallback) {
 
         Thread runBattle = new Thread(() -> {
             int moveCounter = 1;
@@ -10,9 +13,9 @@ public class Battlefield {
             System.out.println("\u25B6 FIGHT!!!");
             do {
                 if (moveCounter % 2 == 0) {
-                    isRunOfBattle = fightOfBattle(unitFirst, unitSecondary);
+                    isRunOfBattle = fightOfBattle(unitFirst, unitSecondary, battleCallback);
                 } else {
-                    isRunOfBattle = fightOfBattle(unitSecondary, unitFirst);
+                    isRunOfBattle = fightOfBattle(unitSecondary, unitFirst, battleCallback);
                 }
 
                 moveCounter++;
@@ -24,13 +27,13 @@ public class Battlefield {
                 }
 
             } while (isRunOfBattle);
-            System.out.println("\u23F9 FINISH HIM!!!");
+
         });
 
         runBattle.start();
     }
 
-    private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit) {
+    private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit, BattleCallback battleCallback) {
 
         if (defenceUnit.getHealth() > 0) {
 
@@ -48,9 +51,31 @@ public class Battlefield {
             }
 
 
-        } else if (defenceUnit.getHealth() <= 0) {
+        } else if (defenceUnit.getHealth() <= 0 && defenceUnit instanceof Hero) {
             defenceUnit.setHealth(0);
-            System.out.println("\u2620" + defenceUnit + "повержен");
+
+            System.out.println("\u23F9 FINISH HIM!!!");
+            System.out.println("\u2620" + defenceUnit + "повержен. Вы пали в бою как герой!!!");
+
+            battleCallback.battleLos();
+
+            return false;
+        } else if (defenceUnit.getHealth() <= 0 && !(defenceUnit instanceof Hero)) {
+
+            defenceUnit.setHealth(0);
+
+            attackUnit.setGold(attackUnit.getGold() + defenceUnit.getGold());
+            attackUnit.setExperience(attackUnit.getExperience() + defenceUnit.getExperience());
+
+            System.out.println("\u23F9 FINISH HIM!!!");
+            System.out.println("\u2620" + defenceUnit
+                    + "Враг повержен. Вы получили "
+                    + defenceUnit.getExperience()
+                    + " единиц опыта и " + defenceUnit.getGold()
+                    + " монет золота.");
+
+            battleCallback.battleWin();
+
             return false;
         }
 
