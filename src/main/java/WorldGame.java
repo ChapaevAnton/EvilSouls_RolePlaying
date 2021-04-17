@@ -5,22 +5,34 @@ import units.GenerateUnits;
 import units.Hero;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class WorldGame {
 
     public static FightUnit player;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
-        // FIXME: 15.04.2021 доработать загрузку лого
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/logo.txt"));
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            System.out.println("\u001B[31m" + line);
+        //загрузка логотипа
+        final Path logo = Paths.get("src/main/resources/logo.txt");
+        final Path logoPath = logo.toAbsolutePath();
+
+        try (BufferedReader input = Files.newBufferedReader(logoPath, StandardCharsets.UTF_8)) {
+            String line;
+            while ((line = input.readLine()) != null) {
+                System.out.println("\u001B[31m" + line);
+            }
+        } catch (IOException err) {
+            err.printStackTrace();
         }
+
+
+
 
         player = new Hero("player", 5, 5);
 
@@ -40,7 +52,6 @@ public class WorldGame {
                 System.out.println("GAME OVER");
             }
         });
-
 
     }
 
