@@ -33,13 +33,13 @@ public class WorldGame {
         final Path logoPath = logo.toAbsolutePath();
 
         BufferedReader loadLogo = Files.newBufferedReader(logoPath, StandardCharsets.UTF_8);
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while ((line = loadLogo.readLine()) != null) {
             System.out.println("\u001B[31m" + line);
         }
 
         //enter для продолжения
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         console.readLine();
 
         //пункты меню
@@ -48,17 +48,9 @@ public class WorldGame {
             System.out.println("Добро пожаловать в ад!!!\n1. Новая игра\n2. Выход\nВведите команду");
             selected = console.readLine();
             switch (selected) {
-                case "1" -> {
-                    createPlayer();
-                }
-
-                case "2" -> {
-                    System.out.println("Работа программы завершена...");
-                }
-
-                default -> {
-                    System.out.println("Несуществующая команда, повторите ввод...");
-                }
+                case "1" -> createPlayer();
+                case "2" -> System.out.println("Работа программы завершена...");
+                default -> System.out.println("Несуществующая команда, повторите ввод...");
             }
         } while (!selected.equals("2"));
     }
@@ -66,26 +58,44 @@ public class WorldGame {
     //создание игрока
     static void createPlayer() throws IOException {
         String selected;
-        boolean isCreate = true;
+        boolean isCreateHero = true;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         do {
             System.out.println("Создание героя...");
             System.out.println("Введите имя героя:");
             selected = console.readLine();
             // OPTIMIZE: 18.04.2021 Проверка пока только на не пустой ввод имени
-            if (selected.equals("")) {
+            if (selected.equals(""))
                 System.out.println("Введите корректное имя героя!");
-            } else isCreate = false;
-        } while (isCreate);
+            else isCreateHero = false;
+        } while (isCreateHero);
 
         player = new Hero(selected, GameUnit.FORCE_BASIC, GameUnit.AGILITY_BASIC);
         System.out.println("Герой успешно создан\n" + player.getFullInfoUnit());
-
+        loadGameMenu();
     }
 
     //игровое меню игры
-    static void loadGameMenu() {
+    static void loadGameMenu() throws IOException {
+        String selected;
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        do {
+            System.out.println("Куда Вы направитесь\n" +
+                    "1. В подземелье - крушить монстров\n" +
+                    "2. Торговец артефактами\n" +
+                    "3. Ваша статистика\n" +
+                    "4. В главное меню\n" +
+                    "Введите команду");
 
+            selected = console.readLine();
+            switch (selected) {
+                case "1" -> System.out.println("в бою...");
+                case "2" -> System.out.println("Торговца пока нет...");
+                case "3" -> System.out.println(player.getFullInfoUnit());
+                case "4" -> System.out.println("Удачи, похоже этот мир слишком суров для вас...");
+                default -> System.out.println("Несуществующая команда, повторите ввод...");
+            }
+        } while (!selected.equals("4"));
     }
 
 
