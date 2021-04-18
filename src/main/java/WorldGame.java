@@ -1,3 +1,4 @@
+import battle.Battlefield;
 import units.FightUnit;
 import units.GameUnit;
 import units.Hero;
@@ -45,7 +46,11 @@ public class WorldGame {
         //пункты меню
         String selected;
         do {
-            System.out.println("Добро пожаловать в ад!!!\n1. Новая игра\n2. Выход\nВведите команду");
+            System.out.println("""
+                    Добро пожаловать в ад!!!
+                    1. Новая игра
+                    2. Выход
+                    Введите команду""");
             selected = console.readLine();
             switch (selected) {
                 case "1" -> createPlayer();
@@ -61,8 +66,9 @@ public class WorldGame {
         boolean isCreateHero = true;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         do {
-            System.out.println("Создание героя...");
-            System.out.println("Введите имя героя:");
+            System.out.println("""
+                    Создание героя...
+                    Введите имя героя:""");
             selected = console.readLine();
             // OPTIMIZE: 18.04.2021 Проверка пока только на не пустой ввод имени
             if (selected.equals(""))
@@ -80,12 +86,13 @@ public class WorldGame {
         String selected;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         do {
-            System.out.println("Куда Вы направитесь\n" +
-                    "1. В подземелье - крушить монстров\n" +
-                    "2. Торговец артефактами\n" +
-                    "3. Ваша статистика\n" +
-                    "4. В главное меню\n" +
-                    "Введите команду");
+            System.out.println("""
+                    Куда Вы направитесь
+                    1. В подземелье - крушить монстров
+                    2. Торговец артефактами
+                    3. Ваша статистика
+                    4. В главное меню
+                    Введите команду""");
 
             selected = console.readLine();
             switch (selected) {
@@ -98,6 +105,11 @@ public class WorldGame {
         } while (!selected.equals("4"));
     }
 
+    //текущая битва
+    static void currentBattle() {
+        Battlefield battlefield = new Battlefield();
+        // TODO: 18.04.2021 текущая битва
+    }
 
 //        player = new Hero("player", 5, 5);
 //
