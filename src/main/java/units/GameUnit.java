@@ -61,12 +61,12 @@ public abstract class GameUnit {
 
     public String getFullInfoUnit() {
         return String.format(
-                "Уровень: %d Опыт: %d\n" +
-                        "Имя: %s\n" +
+                "Имя: %s\n" +
+                        "Уровень: %d Опыт: %d\n" +
                         "Здоровье: %d\n" +
                         "Сила: %d\n" +
                         "Ловкость: %d\n" +
-                        "Золото: %d\n", level, experience, name, health, force, agility, gold);
+                        "Золото: %d\n", name, level, experience, health, force, agility, gold);
     }
 
 }
