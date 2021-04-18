@@ -7,6 +7,7 @@ public class Battlefield {
 
     public void battle(FightUnit unitFirst, FightUnit unitSecondary, BattleCallback battleCallback) {
 
+        // OPTIMIZE: 18.04.2021 Возможно это можно сделать как имплементацию Runnable в классе Battlefield
         Thread runBattle = new Thread(() -> {
             int moveCounter = 1;
             boolean isRunOfBattle = true;
