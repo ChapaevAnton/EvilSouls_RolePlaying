@@ -1,6 +1,8 @@
+import battle.BattleCallback;
 import battle.Battlefield;
 import units.FightUnit;
 import units.GameUnit;
+import units.GenerateUnits;
 import units.Hero;
 
 import java.io.BufferedReader;
@@ -87,7 +89,7 @@ public class WorldGame {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         do {
             System.out.println("""
-                    Куда Вы направитесь
+                    Куда Вы направитесь?
                     1. В подземелье - крушить монстров
                     2. Торговец артефактами
                     3. Ваша статистика
@@ -96,7 +98,7 @@ public class WorldGame {
 
             selected = console.readLine();
             switch (selected) {
-                case "1" -> System.out.println("в бою...");
+                case "1" -> currentBattle();
                 case "2" -> System.out.println("Торговца пока нет...");
                 case "3" -> System.out.println(player.getFullInfoUnit());
                 case "4" -> System.out.println("Удачи, похоже этот мир слишком суров для вас...");
@@ -109,26 +111,23 @@ public class WorldGame {
     static void currentBattle() {
         Battlefield battlefield = new Battlefield();
         // TODO: 18.04.2021 текущая битва
+        FightUnit fightUnit = GenerateUnits.getFightUnit(player.getLevel());
+        battlefield.battle(player, fightUnit, new BattleCallback() {
+            @Override
+            public void battleWin() {
+                System.out.println("\u2620" + player
+                        + "Враг повержен. Вы получили "
+                        + fightUnit.getExperience()
+                        + " единиц опыта и " + fightUnit.getGold()
+                        + " монет золота.");
+            }
+
+            @Override
+            public void battleLos() {
+                System.out.println("\u2620" + player + "повержен. Вы пали в бою как герой!!!");
+            }
+        });
+
     }
-
-//        player = new Hero("player", 5, 5);
-//
-//        FightUnit skeleton = GenerateUnits.getFightUnit(player.getLevel());
-//
-//        System.out.println(player.getFullInfoUnit());
-//        System.out.println(skeleton.getFullInfoUnit());
-//
-//        new Battlefield().battle(player, skeleton, new BattleCallback() {
-//            @Override
-//            public void battleWin() {
-//
-//            }
-//
-//            @Override
-//            public void battleLos() {
-//                System.out.println("GAME OVER");
-//            }
-//        });
-
 
 }

@@ -38,7 +38,6 @@ public class Battlefield {
     private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit, BattleCallback battleCallback) {
 
         if (defenceUnit.getHealth() > 0) {
-
             int damageHit = attackUnit.attack() - defenceUnit.defence();
 
             if (damageHit < -10) {
@@ -51,33 +50,20 @@ public class Battlefield {
                 defenceUnit.setHealth(defenceUnit.getHealth() - damageHit);
                 System.out.println("\u2694" + attackUnit + " нанес удар в " + damageHit + " очков урона, по " + defenceUnit);
             }
+        }
 
-
-        } else if (defenceUnit.getHealth() <= 0 && defenceUnit instanceof Hero) {
+        if (defenceUnit.getHealth() <= 0 && defenceUnit instanceof Hero) {
             defenceUnit.setHealth(0);
-
             System.out.println("\u23F9 FINISH HIM!!!");
-            System.out.println("\u2620" + defenceUnit + "повержен. Вы пали в бою как герой!!!");
-
             battleCallback.battleLos();
-
             return false;
+
         } else if (defenceUnit.getHealth() <= 0 && !(defenceUnit instanceof Hero)) {
-
             defenceUnit.setHealth(0);
-
             attackUnit.setGold(attackUnit.getGold() + defenceUnit.getGold());
             attackUnit.setExperience(attackUnit.getExperience() + defenceUnit.getExperience());
-
             System.out.println("\u23F9 FINISH HIM!!!");
-            System.out.println("\u2620" + defenceUnit
-                    + "Враг повержен. Вы получили "
-                    + defenceUnit.getExperience()
-                    + " единиц опыта и " + defenceUnit.getGold()
-                    + " монет золота.");
-
             battleCallback.battleWin();
-
             return false;
         }
 
