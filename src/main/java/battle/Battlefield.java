@@ -8,7 +8,8 @@ public class Battlefield {
     public void battle(FightUnit unitFirst, FightUnit unitSecondary, BattleCallback battleCallback) {
 
         // OPTIMIZE: 18.04.2021 Возможно это можно сделать как имплементацию Runnable в классе Battlefield
-        Thread runBattle = new Thread(() -> {
+        // FIXME: 19.04.2021 когда это выполняется в отдельном потоке, то бой затирает меню, потоку меню нужно дожидаться поток сражения
+        //Thread runBattle = new Thread(() -> {
             int moveCounter = 1;
             boolean isRunOfBattle = true;
             System.out.println("\u25B6 FIGHT!!!");
@@ -30,9 +31,9 @@ public class Battlefield {
 
             }
 
-        });
+      //  });
 
-        runBattle.start();
+        //runBattle.start();
     }
 
     private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit, BattleCallback battleCallback) {

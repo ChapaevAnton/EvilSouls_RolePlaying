@@ -22,6 +22,7 @@ public class WorldGame {
 
         // TODO: 17.04.2021 разработка главного меню игры
         try {
+            loadScreen();
             loadMenu();
         } catch (IOException err) {
             err.printStackTrace();
@@ -30,7 +31,7 @@ public class WorldGame {
     }
 
     //главное меню игры
-    static void loadMenu() throws IOException {
+    static void loadScreen() throws IOException {
         //загрузка логотипа
         final Path logo = Paths.get("src/main/resources/logo.txt");
         final Path logoPath = logo.toAbsolutePath();
@@ -40,7 +41,9 @@ public class WorldGame {
         while ((line = loadLogo.readLine()) != null) {
             System.out.println("\u001B[31m" + line);
         }
+    }
 
+    static void loadMenu() throws IOException {
         //enter для продолжения
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         console.readLine();
@@ -86,16 +89,16 @@ public class WorldGame {
     //игровое меню игры
     static void loadGameMenu() throws IOException {
         String selected;
+
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         do {
             System.out.println("""
-                    Куда Вы направитесь?
+                    Куда Вы направитесь теперь?
                     1. В подземелье - крушить монстров
                     2. Торговец артефактами
                     3. Ваша статистика
                     4. В главное меню
                     Введите команду""");
-
             selected = console.readLine();
             switch (selected) {
                 case "1" -> currentBattle();
@@ -110,12 +113,13 @@ public class WorldGame {
     //текущая битва
     static void currentBattle() {
         Battlefield battlefield = new Battlefield();
+
         // TODO: 18.04.2021 текущая битва
         FightUnit fightUnit = GenerateUnits.getFightUnit(player.getLevel());
         battlefield.battle(player, fightUnit, new BattleCallback() {
             @Override
             public void battleWin() {
-                System.out.println("\u2620" + player
+                System.out.println("\u2795" + player
                         + "Враг повержен. Вы получили "
                         + fightUnit.getExperience()
                         + " единиц опыта и " + fightUnit.getGold()
@@ -125,9 +129,11 @@ public class WorldGame {
             @Override
             public void battleLos() {
                 System.out.println("\u2620" + player + "повержен. Вы пали в бою как герой!!!");
+
             }
         });
 
     }
+
 
 }
