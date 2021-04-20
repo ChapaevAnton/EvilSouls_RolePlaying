@@ -22,7 +22,7 @@ public class WorldGame {
 
         // TODO: 17.04.2021 разработка главного меню игры
         try {
-            loadScreen();
+            loadStartScreen();
             loadMenu();
         } catch (IOException err) {
             err.printStackTrace();
@@ -31,7 +31,7 @@ public class WorldGame {
     }
 
     //главное меню игры
-    static void loadScreen() throws IOException {
+    static void loadStartScreen() throws IOException {
         //загрузка логотипа
         final Path logo = Paths.get("src/main/resources/logo.txt");
         final Path logoPath = logo.toAbsolutePath();
@@ -89,11 +89,12 @@ public class WorldGame {
     //игровое меню игры
     static void loadGameMenu() throws IOException {
         String selected;
-
+        boolean isLiveHero = true;
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        do {
+        while (isLiveHero) {
+
             System.out.println("""
-                    Куда Вы направитесь теперь?
+                    Вы у костра. Куда направитесь теперь?
                     1. В подземелье - крушить монстров
                     2. Торговец артефактами
                     3. Ваша статистика
@@ -104,10 +105,14 @@ public class WorldGame {
                 case "1" -> currentBattle();
                 case "2" -> System.out.println("Торговца пока нет...");
                 case "3" -> System.out.println(player.getFullInfoUnit());
-                case "4" -> System.out.println("Удачи, похоже этот мир слишком суров для вас...");
+                case "4" -> {
+                    return;
+                }
+                case "" -> System.out.println("С возвращением путник, присаживайся возле костра и согрейся...");
                 default -> System.out.println("Несуществующая команда, повторите ввод...");
             }
-        } while (!selected.equals("4"));
+            isLiveHero = player.getHealth() > 0;
+        }
     }
 
     //текущая битва
@@ -129,7 +134,6 @@ public class WorldGame {
             @Override
             public void battleLos() {
                 System.out.println("\u2620" + player + "повержен. Вы пали в бою как герой!!!");
-
             }
         });
 

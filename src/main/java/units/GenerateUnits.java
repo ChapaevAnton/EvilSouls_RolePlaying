@@ -2,7 +2,7 @@ package units;
 
 import java.util.Random;
 
-public class GenerateUnits {
+public final class GenerateUnits {
 
     // OPTIMIZE: 17.04.2021 пока логика простая - множителем является уровень игрока
     public static FightUnit getFightUnit(int levelUnit) {
