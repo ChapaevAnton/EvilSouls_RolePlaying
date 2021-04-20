@@ -107,6 +107,7 @@ public class WorldGame {
                 case "2" -> System.out.println("Торговца пока нет...");
                 case "3" -> System.out.println(player.getFullInfoUnit());
                 case "4" -> {
+                    System.out.println("Удачи, похоже этот мир слишком суров для вас...");
                     return;
                 }
                 case "" -> System.out.println("С возвращением путник, присаживайся возле костра и согрейся...");
