@@ -22,7 +22,7 @@ public class WorldGame {
 
         // TODO: 17.04.2021 разработка главного меню игры
         try {
-            loadStartScreen();
+            loadScreen("src/main/resources/logo.txt");
             loadMenu();
         } catch (IOException err) {
             err.printStackTrace();
@@ -31,9 +31,9 @@ public class WorldGame {
     }
 
     //главное меню игры
-    static void loadStartScreen() throws IOException {
+    static void loadScreen(String pathFileName) throws IOException {
         //загрузка логотипа
-        final Path logo = Paths.get("src/main/resources/logo.txt");
+        final Path logo = Paths.get(pathFileName);
         final Path logoPath = logo.toAbsolutePath();
 
         BufferedReader loadLogo = Files.newBufferedReader(logoPath, StandardCharsets.UTF_8);
@@ -42,6 +42,7 @@ public class WorldGame {
             System.out.println("\u001B[31m" + line);
         }
     }
+
 
     static void loadMenu() throws IOException {
         //enter для продолжения
@@ -113,6 +114,7 @@ public class WorldGame {
             }
             isLiveHero = player.getHealth() > 0;
         }
+        loadScreen("src/main/resources/gameover.txt");
     }
 
     //текущая битва
@@ -128,12 +130,12 @@ public class WorldGame {
                         + "Враг повержен. Вы получили "
                         + fightUnit.getExperience()
                         + " единиц опыта и " + fightUnit.getGold()
-                        + " монет золота.");
+                        + " монет золота.\n");
             }
 
             @Override
             public void battleLos() {
-                System.out.println("\u2620" + player + "повержен. Вы пали в бою как герой!!!");
+                System.out.println("\u2620" + player + "повержен. Вы пали в бою как герой!!!\n");
             }
         });
 

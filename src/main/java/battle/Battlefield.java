@@ -9,28 +9,28 @@ public class Battlefield {
 
         // OPTIMIZE: 18.04.2021 Возможно это можно сделать как имплементацию Runnable в классе Battlefield
 
-            int moveCounter = 1;
-            boolean isRunOfBattle = true;
-            System.out.println("\u25B6 FIGHT!!!");
+        int moveCounter = 1;
+        boolean isRunOfBattle = true;
+        System.out.println("\u25B6 FIGHT!!!");
 
-            while (isRunOfBattle) {
-                if (moveCounter % 2 == 0) {
-                    isRunOfBattle = fightOfBattle(unitFirst, unitSecondary, battleCallback);
-                } else {
-                    isRunOfBattle = fightOfBattle(unitSecondary, unitFirst, battleCallback);
-                }
-
-                moveCounter++;
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+        while (isRunOfBattle) {
+            if (moveCounter % 2 == 0) {
+                isRunOfBattle = fightOfBattle(unitFirst, unitSecondary, battleCallback);
+            } else {
+                isRunOfBattle = fightOfBattle(unitSecondary, unitFirst, battleCallback);
             }
 
-          }
+            moveCounter++;
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
     private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit, BattleCallback battleCallback) {
 
@@ -59,6 +59,7 @@ public class Battlefield {
             defenceUnit.setHealth(0);
             attackUnit.setGold(attackUnit.getGold() + defenceUnit.getGold());
             attackUnit.setExperience(attackUnit.getExperience() + defenceUnit.getExperience());
+            attackUnit.setKillCount(attackUnit.getKillCount() + 1);
             System.out.println("\u23F9 FINISH HIM!!!");
             battleCallback.battleWin();
             return false;
