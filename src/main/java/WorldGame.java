@@ -69,7 +69,7 @@ public class WorldGame {
     //создание игрока
     static void createPlayer() throws IOException {
         String selected;
-        boolean isCreateHero = true;
+
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         do {
             System.out.println("""
@@ -77,10 +77,9 @@ public class WorldGame {
                     Введите имя героя:""");
             selected = console.readLine();
             // OPTIMIZE: 18.04.2021 Проверка пока только на не пустой ввод имени
-            if (selected.equals(""))
-                System.out.println("Введите корректное имя героя!");
-            else isCreateHero = false;
-        } while (isCreateHero);
+            if (selected.isEmpty()) System.out.println("Введите корректное имя героя!");
+
+        } while (selected.isEmpty());
 
         player = new Hero(selected, GameUnit.FORCE_BASIC, GameUnit.AGILITY_BASIC);
         System.out.println("Герой успешно создан\n" + player.getFullInfoUnit());
@@ -90,9 +89,9 @@ public class WorldGame {
     //игровое меню игры
     static void loadGameMenu() throws IOException {
         String selected;
-        boolean isLiveHero = true;
+
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        while (isLiveHero) {
+        while (player.getHealth() > 0) {
 
             System.out.println("""
                     Вы у костра. Куда направитесь теперь?
@@ -113,8 +112,9 @@ public class WorldGame {
                 case "" -> System.out.println("С возвращением путник, присаживайся возле костра и согрейся...");
                 default -> System.out.println("Несуществующая команда, повторите ввод...");
             }
-            isLiveHero = player.getHealth() > 0;
+
         }
+        //конец игры
         loadScreen("src/main/resources/gameover.txt");
     }
 
