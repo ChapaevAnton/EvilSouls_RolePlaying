@@ -19,8 +19,6 @@ public class WorldGame {
 
     public static void main(String[] args) {
 
-
-        // TODO: 17.04.2021 разработка главного меню игры
         try {
             loadScreen("src/main/resources/logo.txt");
             loadMenu();
@@ -122,7 +120,6 @@ public class WorldGame {
     static void currentBattle() {
         Battlefield battlefield = new Battlefield();
 
-        // TODO: 18.04.2021 текущая битва
         FightUnit fightUnit = GenerateUnits.getFightUnit(player.getLevel());
         battlefield.battle(player, fightUnit, new BattleCallback() {
             @Override
