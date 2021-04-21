@@ -139,7 +139,10 @@ public final class WorldGame {
 
             selected = console.readLine();
             switch (selected) {
-                case "1", "2", "3" -> dealer.trade(player, selected);
+                case "1" -> dealer.trade(player, Dealer.Goods.POTION10);
+                case "2" -> dealer.trade(player, Dealer.Goods.POTION20);
+                case "3" -> dealer.trade(player, Dealer.Goods.SHARPEN_SWORD);
+                case "4" -> dealer.trade(player, Dealer.Goods.STRENGTHEN_SHIELD);
                 default -> System.out.println("Несуществующая команда, повторите ввод...");
             }
             System.out.println("У вас осталось золота: " + player.getGold());

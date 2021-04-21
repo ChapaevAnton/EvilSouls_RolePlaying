@@ -13,7 +13,7 @@ public final class Dealer extends GameUnit implements Trading {
 
     public Dealer(String name) {
         super(name, 100, 1, 1, 0, 0, 1);
-        this.goods = new ArrayList<>(Arrays.asList(Goods.POTION10, Goods.SHARPEN_SWORD, Goods.STRENGTHEN_SHIELD));
+        this.goods = new ArrayList<>(Arrays.asList(Goods.POTION10, Goods.POTION20, Goods.SHARPEN_SWORD, Goods.STRENGTHEN_SHIELD));
     }
 
 
@@ -27,26 +27,27 @@ public final class Dealer extends GameUnit implements Trading {
     }
 
     @Override
-    public void trade(FightUnit player, String selectedItem) {
-        int index = Integer.parseInt(selectedItem) - 1;
-        int deal = player.getGold() - goods.get(index).thing.price;
+    public void trade(FightUnit player, Goods selectedItem) {
+
+        int deal = player.getGold() - selectedItem.thing.price;
 
         if (deal >= 0) {
             player.setGold(deal);
-            this.setGold(this.getGold() + goods.get(index).thing.price);
+            this.setGold(this.getGold() + selectedItem.thing.price);
 
-            int characteristics = goods.get(index).thing.characteristics;
+            int characteristics = selectedItem.thing.characteristics;
 
-            switch (index) {
-                case 0 -> {
+            //какие характеристики улучшаются
+            switch (selectedItem) {
+                case POTION10, POTION20 -> {
                     player.setHealth(player.getHealth() + characteristics);
                     System.out.println("Вы восполнили жизни +" + characteristics);
                 }
-                case 1 -> {
+                case SHARPEN_SWORD -> {
                     player.setSword(player.getSword() + characteristics);
                     System.out.println("Вы увеличили атаку +" + characteristics);
                 }
-                case 2 -> {
+                case STRENGTHEN_SHIELD -> {
                     player.setShield(player.getShield() + characteristics);
                     System.out.println("Вы увеличили защиту +" + characteristics);
                 }
@@ -56,7 +57,7 @@ public final class Dealer extends GameUnit implements Trading {
     }
 
     //OPTIMIZE 21.04.21 Когда отрицаешь существование Map
-    private enum Goods {
+    public enum Goods {
 
         POTION10(new Thing("Лечебное зелье +10", 25, 10)),
         POTION20(new Thing("Лечебное зелье +20", 50, 20)),

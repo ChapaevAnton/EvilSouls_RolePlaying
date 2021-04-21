@@ -4,6 +4,6 @@ import units.fight.FightUnit;
 
 public interface Trading {
 
-    void trade(FightUnit player, String selectedItem);
+    void trade(FightUnit player, Dealer.Goods selectedItem);
 
 }
