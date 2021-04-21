@@ -43,7 +43,6 @@ public final class WorldGame {
         }
     }
 
-
     static void loadMenu() throws IOException {
         //enter для продолжения
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
@@ -130,12 +129,12 @@ public final class WorldGame {
             System.out.println("""
                     Здравствуй путник. Рад приветствовать тебя. 
                     Я торговец артефактами\s """ + dealer + """
-                    , и вот мой товар:""");
-
-            for (int i = 0; i < dealer.getGoodsSize(); i++) {
-                System.out.printf("%d. %s\n", i + 1, dealer.getThingName(i));
-            }
-            System.out.println("0. Вернуться к костру");
+                    , и вот мой товар:
+                    1. Лечебное зелье +10
+                    2. Лечебное зелье +20
+                    3. Заточить меч +5 к атаке
+                    4. Укрепить щит +5 к защите
+                    0. Вернуться к костру""");
 
             selected = console.readLine();
             switch (selected) {
@@ -148,7 +147,6 @@ public final class WorldGame {
             System.out.println("У вас осталось золота: " + player.getGold());
         } while (!selected.equals("0"));
     }
-
 
     //текущая битва
     static void currentBattle() {
@@ -172,6 +170,5 @@ public final class WorldGame {
         });
 
     }
-
 
 }

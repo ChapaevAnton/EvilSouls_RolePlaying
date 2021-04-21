@@ -18,7 +18,6 @@ public final class Skeleton extends FightUnit {
 
         if (multiplier > 50) attackHit = powerHit + multiplier / 2;
         else if (multiplier >= 40) attackHit = Math.max(force, agility);
-        ;
 
         return attackHit;
     }

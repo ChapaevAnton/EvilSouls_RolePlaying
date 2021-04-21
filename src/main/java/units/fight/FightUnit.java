@@ -8,7 +8,6 @@ public abstract class FightUnit extends GameUnit implements FightingUnit {
     protected int sword; //атака
     protected int shield; //защита
 
-
     protected FightUnit(String name, int health, int force, int agility, int gold, int experience, int level, int sword, int shield) {
         super(name, health, force, agility, gold, experience, level);
         this.sword = sword;
@@ -22,7 +21,6 @@ public abstract class FightUnit extends GameUnit implements FightingUnit {
     public int getKillCount() {
         return killCount;
     }
-
 
     public int getSword() {
         return sword;

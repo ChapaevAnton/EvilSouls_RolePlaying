@@ -57,15 +57,17 @@ public final class Battlefield {
 
         } else if (defenceUnit.getHealth() <= 0 && !(defenceUnit instanceof Hero)) {
             defenceUnit.setHealth(0);
+
             //начисляем опыт и золото победителю
             attackUnit.setGold(attackUnit.getGold() + defenceUnit.getGold());
             attackUnit.setExperience(attackUnit.getExperience() + defenceUnit.getExperience());
             attackUnit.setKillCount(attackUnit.getKillCount() + 1);
             System.out.println("\u23F9 FINISH HIM!!!");
+
             //повышение уровня пока есть для этого опыт
-            while (attackUnit.getExperience() >= 200) {
+            while (attackUnit.getExperience() >= Hero.LEVEL_UP) {
                 attackUnit.setLevel(attackUnit.getLevel() + 1);
-                attackUnit.setExperience(attackUnit.getExperience() - 200);
+                attackUnit.setExperience(attackUnit.getExperience() - Hero.LEVEL_UP);
                 System.out.println("\u23EB Ваш уровень повышен!");
             }
 
