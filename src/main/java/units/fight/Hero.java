@@ -4,6 +4,8 @@ import java.util.Random;
 
 public final class Hero extends FightUnit {
 
+    public static int LEVEL_UP = 200;
+
     public Hero(String name, int force, int agility) {
 
         super(name, 100, force, agility, 100, 0, 1, 0, 0);

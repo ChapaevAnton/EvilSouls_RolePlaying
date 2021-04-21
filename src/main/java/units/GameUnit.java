@@ -59,6 +59,10 @@ public abstract class GameUnit {
         return level;
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public String getFullInfoUnit() {
         return String.format(
                 "Имя: %s\n" +
