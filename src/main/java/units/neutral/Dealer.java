@@ -15,24 +15,29 @@ public class Dealer extends GameUnit {
     }
 
 
-    public String getThingName(Goods item) {
-        return goods.get(goods.indexOf(item)).thing.name;
+    public String getThingName(int index) {
+        return goods.get(index).thing.name;
     }
 
-    public int getThingPrice(Goods item) {
-        return goods.get(goods.indexOf(item)).thing.price;
+    public int getThingPrice(int index) {
+        return goods.get(index).thing.price;
     }
 
-    public int getThingCharacter(Goods item) {
-        return goods.get(goods.indexOf(item)).thing.characteristics;
+    public int getThingCharacter(int index) {
+        return goods.get(index).thing.characteristics;
     }
 
-    public enum Goods {
+    public ArrayList<Goods> getGoods() {
+        return goods;
+    }
+
+    //OPTIMIZE 21.04.21 Когда отрицаешь существование Map
+    enum Goods {
 
         POTION10(new Thing("Лечебное зелье +10", 25, 10)),
         POTION20(new Thing("Лечебное зелье +20", 50, 20)),
-        SHARPEN_SWORD(new Thing("Заточить меч", 25, 5)),
-        STRENGTHEN_SHIELD(new Thing("Укрепить щит", 25, 5));
+        SHARPEN_SWORD(new Thing("Заточить меч +5", 25, 5)),
+        STRENGTHEN_SHIELD(new Thing("Укрепить щит +5", 25, 5));
 
         Thing thing;
 

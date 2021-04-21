@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class WorldGame {
 
@@ -105,7 +106,7 @@ public class WorldGame {
             selected = console.readLine();
             switch (selected) {
                 case "1" -> currentBattle();
-                case "2" -> System.out.println("Торговца пока нет...");
+                case "2" -> loadShopMenu();
                 case "3" -> System.out.println(player.getFullInfoUnit());
                 case "4" -> {
                     System.out.println("Удачи, похоже этот мир слишком суров для вас...");
@@ -119,6 +120,37 @@ public class WorldGame {
         //конец игры
         loadScreen("src/main/resources/gameover.txt");
     }
+
+    //игровое меню торговца
+    static void loadShopMenu() throws IOException {
+        String selected;
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
+        do {
+
+            System.out.println("""
+                    Здравствуй путник. Рад приветствовать тебя. 
+                    Я торговец артефактами\s """ + dealer + """
+                    , и вот мой товар:""");
+
+            for (int i = 0; i < dealer.getGoods().size(); i++) {
+                System.out.printf("%d. %s\n", i + 1, dealer.getThingName(i));
+            }
+            System.out.println("0. Вернуться к костру");
+
+            selected = console.readLine();
+
+            switch (selected) {
+                case "1" -> {
+                    // TODO: 21.04.2021 логика продажа - покупка
+                }
+
+                default -> System.out.println("Несуществующая команда, повторите ввод...");
+            }
+
+        } while (!selected.equals("0"));
+    }
+
 
     //текущая битва
     static void currentBattle() {
