@@ -2,24 +2,35 @@ package units.neutral;
 
 import units.GameUnit;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Dealer extends GameUnit {
 
-    Goods[] goods;
+    ArrayList<Goods> goods;
 
     public Dealer(String name) {
         super(name, 100, 1, 1, 0, 0, 1);
-        this.goods = new Goods[]{Goods.POTION, Goods.SHARPEN_SWORD, Goods.STRENGTHEN_SHIELD};
+        this.goods = new ArrayList<>(Arrays.asList(Goods.POTION10, Goods.SHARPEN_SWORD, Goods.STRENGTHEN_SHIELD));
     }
 
 
-    public String getThingName(int index) {
-        return goods[index].thing.name;
+    public String getThingName(Goods item) {
+        return goods.get(goods.indexOf(item)).thing.name;
     }
 
+    public int getThingPrice(Goods item) {
+        return goods.get(goods.indexOf(item)).thing.price;
+    }
 
-    enum Goods {
+    public int getThingCharacter(Goods item) {
+        return goods.get(goods.indexOf(item)).thing.characteristics;
+    }
 
-        POTION(new Thing("Лечебное зелье", 25, 10)),
+    public enum Goods {
+
+        POTION10(new Thing("Лечебное зелье +10", 25, 10)),
+        POTION20(new Thing("Лечебное зелье +20", 50, 20)),
         SHARPEN_SWORD(new Thing("Заточить меч", 25, 5)),
         STRENGTHEN_SHIELD(new Thing("Укрепить щит", 25, 5));
 
