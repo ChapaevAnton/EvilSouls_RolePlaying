@@ -5,9 +5,9 @@ import units.GameUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Dealer extends GameUnit {
+public final class Dealer extends GameUnit {
 
-    ArrayList<Goods> goods;
+    private final ArrayList<Goods> goods;
 
     public Dealer(String name) {
         super(name, 100, 1, 1, 0, 0, 1);
@@ -32,7 +32,7 @@ public class Dealer extends GameUnit {
     }
 
     //OPTIMIZE 21.04.21 Когда отрицаешь существование Map
-    enum Goods {
+    private enum Goods {
 
         POTION10(new Thing("Лечебное зелье +10", 25, 10)),
         POTION20(new Thing("Лечебное зелье +20", 50, 20)),
@@ -47,7 +47,7 @@ public class Dealer extends GameUnit {
 
     }
 
-    static class Thing {
+    private static class Thing {
 
         String name;
         int price;
