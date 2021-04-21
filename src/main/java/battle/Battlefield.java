@@ -33,7 +33,9 @@ public class Battlefield {
     private boolean fightOfBattle(FightUnit attackUnit, FightUnit defenceUnit, BattleCallback battleCallback) {
 
         if (defenceUnit.getHealth() > 0) {
-            int damageHit = attackUnit.attack() - defenceUnit.defence();
+            int attack = attackUnit.attack() + attackUnit.getSword();
+            int defence = defenceUnit.defence() + defenceUnit.getShield();
+            int damageHit = attack - defence;
 
             if (damageHit < -10) {
                 attackUnit.setHealth(attackUnit.getHealth() + damageHit);

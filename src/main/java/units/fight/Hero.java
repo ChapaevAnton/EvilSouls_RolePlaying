@@ -5,7 +5,8 @@ import java.util.Random;
 public final class Hero extends FightUnit {
 
     public Hero(String name, int force, int agility) {
-        super(name, 100, force, agility, 0, 0, 1);
+
+        super(name, 100, force, agility, 100, 0, 1, 0, 0);
     }
 
     @Override

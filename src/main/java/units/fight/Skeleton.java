@@ -6,7 +6,7 @@ public final class Skeleton extends FightUnit {
 
     public Skeleton(int force, int agility, int gold, int experience) {
 
-        super("skeleton", 100, force, agility, gold, experience,1);
+        super("skeleton", 100, force, agility, gold, experience,1,0,0);
     }
 
     @Override

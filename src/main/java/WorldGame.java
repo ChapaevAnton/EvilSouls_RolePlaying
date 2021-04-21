@@ -13,7 +13,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class WorldGame {
 
@@ -133,21 +132,17 @@ public class WorldGame {
                     Я торговец артефактами\s """ + dealer + """
                     , и вот мой товар:""");
 
-            for (int i = 0; i < dealer.getGoods().size(); i++) {
+            for (int i = 0; i < dealer.getGoodsSize(); i++) {
                 System.out.printf("%d. %s\n", i + 1, dealer.getThingName(i));
             }
             System.out.println("0. Вернуться к костру");
 
             selected = console.readLine();
-
             switch (selected) {
-                case "1" -> {
-                    // TODO: 21.04.2021 логика продажа - покупка
-                }
-
+                case "1", "2", "3" -> dealer.trade(player, selected);
                 default -> System.out.println("Несуществующая команда, повторите ввод...");
             }
-
+            System.out.println("У вас осталось золота: " + player.getGold());
         } while (!selected.equals("0"));
     }
 

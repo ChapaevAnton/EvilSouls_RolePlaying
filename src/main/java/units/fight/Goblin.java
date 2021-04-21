@@ -5,7 +5,7 @@ import java.util.Random;
 public final class Goblin extends FightUnit {
 
     public Goblin(int force, int agility, int gold, int experience) {
-        super("goblin", 100, force, agility, gold, experience, 1);
+        super("goblin", 100, force, agility, gold, experience, 1,0,0);
     }
 
     @Override
