@@ -1,4 +1,6 @@
-package units;
+package units.fight;
+
+import units.GameUnit;
 
 public abstract class FightUnit extends GameUnit implements FightingUnit {
 

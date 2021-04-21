@@ -1,4 +1,4 @@
-package units;
+package units.fight;
 
 import java.util.Random;
 

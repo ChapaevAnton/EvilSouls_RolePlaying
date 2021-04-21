@@ -1,9 +1,10 @@
 import battle.BattleCallback;
 import battle.Battlefield;
-import units.FightUnit;
+import units.fight.FightUnit;
 import units.GameUnit;
 import units.GenerateUnits;
-import units.Hero;
+import units.fight.Hero;
+import units.neutral.Dealer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.nio.file.Paths;
 public class WorldGame {
 
     static FightUnit player;
+    static Dealer dealer;
 
     public static void main(String[] args) {
 
@@ -80,8 +82,10 @@ public class WorldGame {
         } while (selected.isEmpty());
 
         player = new Hero(selected, GameUnit.FORCE_BASIC, GameUnit.AGILITY_BASIC);
+        dealer = new Dealer("Волшебник Рэндольф");
         System.out.println("Герой успешно создан\n" + player.getFullInfoUnit());
         loadGameMenu();
+
     }
 
     //игровое меню игры

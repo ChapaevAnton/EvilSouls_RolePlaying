@@ -1,5 +1,9 @@
 package units;
 
+import units.fight.FightUnit;
+import units.fight.Goblin;
+import units.fight.Skeleton;
+
 import java.util.Random;
 
 public final class GenerateUnits {

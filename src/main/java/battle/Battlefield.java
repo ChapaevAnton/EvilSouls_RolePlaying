@@ -1,7 +1,7 @@
 package battle;
 
-import units.FightUnit;
-import units.Hero;
+import units.fight.FightUnit;
+import units.fight.Hero;
 
 public class Battlefield {
 

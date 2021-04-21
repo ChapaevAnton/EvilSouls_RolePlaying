@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.Test;
-import units.FightingUnit;
-import units.Goblin;
-import units.Hero;
-import units.Skeleton;
+import units.fight.FightingUnit;
+import units.fight.Goblin;
+import units.fight.Hero;
+import units.fight.Skeleton;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
