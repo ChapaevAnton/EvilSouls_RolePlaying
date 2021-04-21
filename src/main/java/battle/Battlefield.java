@@ -67,6 +67,11 @@ public final class Battlefield {
             //повышение уровня пока есть для этого опыт
             while (attackUnit.getExperience() >= Hero.LEVEL_UP) {
                 attackUnit.setLevel(attackUnit.getLevel() + 1);
+
+                //рандомно увеличиваем характеристики
+                if (Math.random() > .5) attackUnit.setForce(attackUnit.getForce() + 1);
+                else attackUnit.setAgility(attackUnit.getAgility() + 1);
+
                 attackUnit.setExperience(attackUnit.getExperience() - Hero.LEVEL_UP);
                 System.out.println("\u23EB Ваш уровень повышен!");
             }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public final class Hero extends FightUnit {
 
-    public static int LEVEL_UP = 200;
+    public static int LEVEL_UP = 100;
 
     public Hero(String name, int force, int agility) {
 

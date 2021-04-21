@@ -31,6 +31,22 @@ public abstract class GameUnit {
         return name + "(" + health + ")";
     }
 
+    public int getForce() {
+        return force;
+    }
+
+    public void setForce(int force) {
+        this.force = force;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
     public int getHealth() {
         return health;
     }
